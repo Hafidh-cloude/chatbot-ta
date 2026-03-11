@@ -1,3 +1,5 @@
+import os
+
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -33,6 +35,9 @@ async def root():
         "message": "Chatbot API is running",
         "version": settings.API_VERSION
     }
+
+# For Railway deployment
+port = int(os.environ.get("PORT", 8000))
 
 
 @app.post("/get-recommendations")
